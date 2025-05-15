@@ -1,0 +1,43 @@
+# Projet Quarto – Intelligence Artificielle
+
+## Étudiants
+BUi Quentin -23236
+## Description
+
+Ce projet consiste à développer une intelligence artificielle capable de jouer au jeu Quarto dans le cadre d'un championnat entre IA. Le client est implémenté en Python et communique avec un serveur via le protocole réseau fourni.
+
+## Stratégie
+
+L’IA repose sur l’algorithme Minimax avec les optimisations suivantes :
+
+- Élagage alpha-bêta : permet de réduire considérablement l’espace de recherche en éliminant les branches non prometteuses.
+- Approfondissement itératif : permet d’interrompre proprement la recherche lorsque la limite de temps est atteinte, tout en garantissant un coup valide à chaque étape.
+- Évaluation heuristique : l’IA évalue les positions en tenant compte du nombre de lignes menaçantes et des attributs communs restants dans chaque ligne.
+
+La stratégie consiste à :
+
+1. Chercher une victoire immédiate.
+2. Empêcher l’adversaire de gagner à son tour.
+3. Donner une pièce difficile à utiliser (non décisive) à l’adversaire.
+4. Optimiser ses propres opportunités de gagner à moyen terme.
+
+## Architecture
+
+- `client.play.py` : point d’entrée du client IA (joueur autonome).
+- `quarto/` : contient les modules internes pour :
+  - la représentation du plateau,
+  - la gestion des pièces,
+  - les fonctions de détection de victoire,
+  - l’implémentation de l’algorithme Minimax.
+
+## Bibliothèques utilisées
+
+- `socket` : communication avec le serveur.
+- `time` : gestion des délais pour l’approfondissement itératif.
+- `copy` : duplication sécurisée des états de jeu.
+- `pytest` et `pytest-cov` : tests unitaires et mesure de couverture.
+
+## Lancement
+
+```bash
+python3 client.play.py <host> <port> <nom_du_joueur>
